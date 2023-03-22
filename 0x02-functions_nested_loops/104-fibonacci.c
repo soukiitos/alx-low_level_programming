@@ -12,13 +12,13 @@ int main(void)
 	a = 1;
 	b = 2;
 	j = k = 1;
-	printf("%ld,%ld", a, b);
+	printf("%ld, %ld", a, b);
 	for (i = 0; i < 96; i++)
 	{
 		if (j)
 		{
 			F1 = a + b;
-			printf(" ,%ld", F1);
+			printf(", %ld", F1);
 			a = b;
 			b = F1;
 		}
@@ -34,7 +34,7 @@ int main(void)
 			}
 			F2 = (c + d);
 			F1 = a + b + (F2 / 1000000000);
-			printf(" ,%ld", F1);
+			printf(", %ld", F1);
 			printf("%ld", F2 % 1000000000);
 			a = b;
 			c = d;

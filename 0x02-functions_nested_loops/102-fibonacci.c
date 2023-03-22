@@ -13,8 +13,10 @@ int main(void)
 	{
 		s = F1 + F2;
 		printf("%lu", s);
+
 		F1 = F2;
 		F2 = s;
+
 		if (a == 49)
 			printf("\n");
 		else

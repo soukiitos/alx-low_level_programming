@@ -20,7 +20,7 @@ int main(void)
 			F1 = a + b;
 			printf(" ,%ld", F1);
 			a = b;
-			b = a;
+			b = F1;
 		}
 		else
 		{
@@ -30,6 +30,7 @@ int main(void)
 				d = b % 1000000000;
 				a = a / 1000000000;
 				b = b / 1000000000;
+				k = 0;
 			}
 			F2 = c + d;
 			F1 = a + b + (F2 / 1000000000);

@@ -33,8 +33,8 @@ int main(void)
 			}
 			F2 = c + d;
 			F1 = a + b + (F2 / 1000000000);
-			printf(" ,%d", F1);
-			printf("%d", F2 % 1000000000);
+			printf(" ,%ld", F1);
+			printf("%ld", F2 % 1000000000);
 			a = b;
 			c = d;
 			b = F1;

@@ -15,10 +15,10 @@ int main(void)
 	{
 		F1 = a + b;
 		a = b;
-		b = a;
+		b = F1;
 		if ((a % 2) == 0)
 		{
-			F2 = a + 1;
+			F2 += a;
 		}
 	}
 	printf("%ld\n", F2);

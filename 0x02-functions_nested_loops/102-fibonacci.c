@@ -16,13 +16,9 @@ int main(void)
 		F1 = F2;
 		F2 = s;
 		if (a == 49)
-		{
 			printf("\n");
-		}
 		else
-		{
 			printf(",");
-		}
 	}
 	return (0);
 }

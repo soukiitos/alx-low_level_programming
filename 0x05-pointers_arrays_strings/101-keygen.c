@@ -21,7 +21,7 @@ int main(void)
 		if ((2772 - sum) - '0' < 78)
 		{
 			a = 2772 - sum - '0';
-			sum = a++;
+			sum += a;
 			putchar(a + '0');
 			break;
 		}

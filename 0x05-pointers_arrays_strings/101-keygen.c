@@ -8,17 +8,17 @@
  */
 int main(void)
 {
-	char pswd[90];
+	char pswd[100];
 	int i, sum = 0, a;
 
 	srand(time(NULL));
 
-	for (i = 0; i < 90; i++)
+	for (i = 0; i < 100; i++)
 	{
-		pswd[i] = rand() % 58;
+		pswd[i] = rand() % 78;
 		sum += (pswd[i] + '0');
 		putchar(pswd[i] + '0');
-		if ((2772 - sum) - '0' < 58)
+		if ((2772 - sum) - '0' < 78)
 		{
 			a = 2772 - sum - '0';
 			sum = a++;

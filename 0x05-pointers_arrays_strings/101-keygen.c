@@ -9,16 +9,16 @@
 int main(void)
 {
 	char pswd[90];
-	int i = 0, sum = 0, a;
+	int i, sum = 0, a;
 
 	srand(time(NULL));
 
 	for (i = 0; i < 90; i++)
 	{
-		pswd[i] = rand() % 78;
+		pswd[i] = rand() % 58;
 		sum += (pswd[i] + '0');
 		putchar(pswd[i] + '0');
-		if ((2772 - sum) - '0' > 78)
+		if ((2772 - sum) - '0' < 58)
 		{
 			a = 2772 - sum - '0';
 			sum = a++;

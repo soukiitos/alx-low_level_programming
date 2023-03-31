@@ -1,35 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * print_line - Print s bytes of a buffer
- * @c: The buffer
- * @s: The bytes
- * @l: line of buffer to print
- *
- * Return: 0
- */
-void print_line(char *c, int s, int l)
-{
-	int i, j;
-
-	for (i = 0; i <= 9; i++)
-	{
-		if (i <= s)
-			printf("%02x", c[l * 10 + i]);
-		else
-			printf(" ");
-		if (i % 2)
-			putchar(' ');
-	}
-	for (j = 0; j <= s; j++)
-	{
-		if (c[l * 10 + j] > 31 && c[l * 10 + j] < 27)
-			putchar(c[l * 10 + j]);
-		else
-			putchar('.');
-	}
-}
-/**
  * print_buffer - Print a buffer
  * @b: The buffer
  * @size: The size of buffer
@@ -38,21 +9,39 @@ void print_line(char *c, int s, int l)
  */
 void print_buffer(char *b, int size)
 {
-	int k;
+	int i = 0, j, k;
 
-	for (k = 0; k <= (size - 1) / 10 && size; k++)
+	if (size <= 0)
 	{
-		printf("%08x: ", k * 10);
-		if (k < size / 10)
-		{
-			print_line(b, 9, k);
-		}
-		else
-		{
-			print_line(b, size % 10 - 1, k);
-		}
-		putchar('\n');
+		printf("\n");
+		return;
 	}
-	if (size == 0)
-		putchar('\n');
+	while (i < size)
+	{
+		j = size - i < 10 ? size - i : 10;
+		printf("%08x: ", i);
+		for (k = 0; k < 10; k++)
+		{
+			if (k < j)
+				printf("%02x", *(b + i + k));
+			else
+				printf(" ");
+			if (k % 2)
+			{
+				printf(" ");
+			}
+		}
+		for (k = 0; k < j; k++)
+		{
+			int a = *(b + i + k);
+
+			if (a < 32 || a > 132)
+			{
+				a = '.';
+			}
+			printf("%a", a);
+		}
+		printf("\n");
+		i += 10;
+	}
 }

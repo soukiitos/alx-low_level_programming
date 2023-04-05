@@ -8,11 +8,11 @@
  */
 int _Fsqrt(int i, int n)
 {
-        if (i * i == n)
-                return (i);
+	if (i * i == n)
+		return (i);
 	else if (i * i > n)
-                return (-1);
-        return (_Fsqrt(i + 1, n));
+		return (-1);
+	return (_Fsqrt(i + 1, n));
 }
 /**
  * _sqrt_recursion - return the natural square root of a number

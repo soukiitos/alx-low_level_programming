@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 		{
 			cents -= 2;
 		}
-		else 
+		else
 		{
 			cents -= 1;
 		}

@@ -10,10 +10,8 @@ int wrd_count(char *s)
 {
 	int words, count, f;
 
-	count = 0;
-	while (s[count] != '\0')
+	for (count = 0; s[count] != '\0'; count++)
 	{
-		count++;
 		if (s[count] == ' ')
 		{
 			f = 0;

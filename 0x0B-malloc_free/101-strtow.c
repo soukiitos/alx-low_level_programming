@@ -1,12 +1,12 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * count_word - Count the number of words
+ * wrd_count - Count the number of words
  * @s: The string
  *
  * Return: 0
  */
-int count_word(char *s)
+int wrd_count(char *s)
 {
 	int words, count, f;
 
@@ -41,7 +41,7 @@ char **strtow(char *str)
 	{
 		a++;
 	}
-	w = count_word(str);
+	w = wrd_count(str);
 	if (w == 0)
 	{
 		return (NULL);

@@ -8,7 +8,7 @@
  */
 int count_word(char *s)
 {
-	int words = 0, count, f = 0;
+	int words, count, f;
 
 	count = 0;
 	while (s[count] != '\0')
@@ -55,8 +55,8 @@ char **strtow(char *str)
 		{
 			if (count)
 			{
-				end = i;
 				t = (char *)malloc(sizeof(char) * (count + 1));
+				end = i;
 				if (t == NULL)
 					return (NULL);
 				while (start < end)

@@ -26,13 +26,12 @@ int main(int argc, char *argv[])
 	array = (char *)main;
 	while (j < i)
 	{
+		printf("%02hhx ", array[j]);
 		if (j == i - 1)
 		{
 			printf("%2hhx\n", array[j]);
 			break;
 		}
-		printf("%2hhx", array[j]);
-		printf(" ");
 		j++;
 	}
 	return (0);

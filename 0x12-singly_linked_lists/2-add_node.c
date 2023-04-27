@@ -10,7 +10,7 @@ list_t *add_node(list_t **head, const char *str)
 {
 	size_t i = 0;
 	list_t *node;
-	
+
 	while (str[i])
 	{
 		i++;

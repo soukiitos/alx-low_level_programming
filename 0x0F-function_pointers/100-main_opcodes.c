@@ -24,15 +24,14 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 	array = (char *)main;
-	while (j < i)
+	for (; j < i; j++)
 	{
-		printf("%02hhx ", array[j]);
 		if (j == i - 1)
 		{
 			printf("%2hhx\n", array[j]);
 			break;
 		}
-		j++;
+		printf("%02hhx ", array[j]);
 	}
 	return (0);
 }

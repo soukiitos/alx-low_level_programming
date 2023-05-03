@@ -8,12 +8,12 @@
 listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *i, *j;
-	
+
+	i = NULL;
 	if (head == NULL)
 	{
 		return (NULL);
 	}
-	i = NULL;
 	while (*head != NULL)
 	{
 		j = (*head)->next;

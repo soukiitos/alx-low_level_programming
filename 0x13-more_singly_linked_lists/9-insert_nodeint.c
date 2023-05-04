@@ -29,11 +29,11 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		j++;
 		h = h->next;
 	}
-		if (h != NULL || (h->next) != NULL)
-		{
-			i->next = h->next;
-			h->next = i;
-			return (i);
-		}
-	return (i);
+	if (h != NULL || (h->next) != NULL)
+	{
+		i->next = h->next;
+		h->next = i;
+		return (i);
+	}
+	return (NULL);
 }

@@ -22,6 +22,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 	fn = open(filename, O_RDONLY);
+	if (fn == -1)
+	{
+		return (0);
+	}
 	i = read(fn, l, letters);
 	j = write(STDOUT_FILENO, l, i);
 	if (!i)

@@ -10,7 +10,7 @@ int create_file(const char *filename, char *text_content)
 {
 	int i = 0, j, fn;
 
-	if (filename != NULL)
+	if (filename == NULL)
 	{
 		return (-1);
 	}
@@ -18,7 +18,7 @@ int create_file(const char *filename, char *text_content)
 	{
 		text_content = "";
 	}
-	fn = open(filename, O_WRONLY | O_CREAT | O_TRUNC, '\200');
+	fn = open(filename, O_CREAT | O_WRONLY | O_TRUNC, '\200');
 	if (fn == -1)
 	{
 		return (-1);

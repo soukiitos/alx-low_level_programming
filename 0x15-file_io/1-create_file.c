@@ -28,9 +28,9 @@ int create_file(const char *filename, char *text_content)
 		i++;
 	}
 	j = write(fn, text_content, i);
-	if (j == 1)
+	if (j == -1)
 	{
-		return (1);
+		return (-1);
 	}
 	close(fn);
 	return (1);

@@ -9,8 +9,15 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
+
+#define USAGE "Usage: cp file_from file_to\n"
+#define ERROR_NREAD "Error: Can't read from file NAME_OF_THE_FILE%s\n"
+#define ERROR_NWRITE "Error: Can't write to NAME_OF_THE_FILE%s\n"
+#define ERROR_NCLOSE "Error: Can't close fd FD_VALUE%d\n"
+#define PERMISSIONS (S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR | S_IWGRP | S_IWOTH)
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
 int create_file(const char *filename, char *text_content);
 int append_text_to_file(const char *filename, char *text_content);
+int main(int ac, char **av);
 #endif

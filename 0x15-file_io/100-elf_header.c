@@ -12,9 +12,8 @@ void magic(Elf64_Ehdr k)
 	int m = 0;
 
 	printf("  Magic:   ");
-	while (m < EI_NIDENT)
+	for (; m < EI_NIDENT; m++)
 	{
-		m++;
 		printf("%2.2x%s", k.e_ident[m], m == EI_NIDENT  - 1 ? "\n" : " ");
 	}
 }
@@ -38,6 +37,9 @@ void class(Elf64_Ehdr k)
 		case ELFCLASSNONE:
 			printf("none");
 		break;
+		default:
+			printf("<unknown: %x>", k.e_ident[EI_CLASS]);
+		break;
 	}
 	printf("\n");
 }
@@ -60,6 +62,9 @@ void data(Elf64_Ehdr k)
 		break;
 		case ELFDATANONE:
 			printf("none");
+		break;
+		default:
+			printf("<unknown: %x>", k.e_ident[EI_CLASS]);
 		break;
 	}
 	printf("\n");
@@ -185,17 +190,17 @@ void type(Elf64_Ehdr k)
 	}
 	switch (ty[t])
 	{
+		case ET_NONE:
+			printf("NONE (None)");
+			break;
+		case ET_REL:
+			printf("REL (Relocatable file)");
+		break;
 		case ET_EXEC:
 			printf("EXEC (Executable file)");
 		break;
 		case ET_DYN:
 			printf("DYN (Shared object file)");
-		break;
-		case ET_NONE:
-			printf("NONE (None)");
-		break;
-		case ET_REL:
-			printf("REL (Relocatable file)");
 		break;
 		case ET_CORE:
 			printf("CORE (Core file)");
@@ -215,10 +220,20 @@ void type(Elf64_Ehdr k)
 void entrypointaddress(Elf64_Ehdr k)
 {
 	unsigned char *e = (unsigned char *)&k.e_entry;
-	int et = 0, ed = 0;
-
+	int et, ed;
+	
 	printf("  Entry point address:               0x");
-	if (k.e_ident[EI_DATA] == ELFDATA2MSB)
+	if (k.e_ident[EI_DATA] != ELFDATA2MSB)
+	{
+		et = k.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!e[et])
+			et--;
+		printf("%x", e[et--]);
+		for (; et >= 0; et--)
+			printf("%02x", e[et]);
+		printf("\n");
+	}
+	else
 	{
 		et = 0;
 		ed = k.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
@@ -226,16 +241,6 @@ void entrypointaddress(Elf64_Ehdr k)
 			;
 		printf("%x", e[et]);
 		for (; et <= ed; et++)
-			printf("%02x", e[et]);
-		printf("\n");
-	}
-	else
-	{
-		et = k.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
-		for (; !e[et]; et--)
-			;
-		printf("%x", e[et--]);
-		for (; et >= 0; et--)
 			printf("%02x", e[et]);
 		printf("\n");
 	}

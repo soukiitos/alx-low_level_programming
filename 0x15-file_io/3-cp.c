@@ -9,8 +9,9 @@
  */
 int main(int ac, char **av)
 {
-	int i, j, k;
+	int i, j;
 	char buffer[read_buffer_size];
+	ssize_t k;
 
 	if (ac >= 2)
 	{
@@ -46,7 +47,7 @@ int main(int ac, char **av)
 	}
 	if (j)
 	{
-		dprintf(STDERR_FILENO, ERROR_NCLOSE, j), exit(100);
+		dprintf(STDERR_FILENO, ERROR_NCLOSE, i), exit(100);
 	}
 	return (EXIT_SUCCESS);
 }

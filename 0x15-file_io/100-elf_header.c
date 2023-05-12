@@ -221,7 +221,7 @@ void entrypointaddress(Elf64_Ehdr k)
 {
 	unsigned char *e = (unsigned char *)&k.e_entry;
 	int et, ed;
-	
+
 	printf("  Entry point address:               0x");
 	if (k.e_ident[EI_DATA] != ELFDATA2MSB)
 	{

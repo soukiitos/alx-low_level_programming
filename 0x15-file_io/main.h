@@ -15,7 +15,7 @@
 #define ERROR_NWRITE "Error: Can't write to NAME_OF_THE_FILE%s\n"
 #define ERROR_NCLOSE "Error: Can't close fd FD_VALUE%d\n"
 #define PERMISSIONS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)
-#define read_buffer_size 1024
+#define READ_BUFF_SIZE 1024
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
 int create_file(const char *filename, char *text_content);

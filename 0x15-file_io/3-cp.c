@@ -9,7 +9,7 @@
 int main(int ac, char **av)
 {
 	int i, j;
-	char buffer[read_buffer_size];
+	char buffer[READ_BUFF_SIZE];
 	ssize_t k;
 
 	if (ac >= 2)
@@ -26,7 +26,7 @@ int main(int ac, char **av)
 	{
 		dprintf(STDERR_FILENO, ERROR_NWRITE, av[2]), exit(99);
 	}
-	for (; (k = read(i, buffer, read_buffer_size)) > 0; )
+	for (; (k = read(i, buffer, READ_BUFF_SIZE)) > 0; )
 	{
 		if (write(j, buffer, k) != k)
 		{

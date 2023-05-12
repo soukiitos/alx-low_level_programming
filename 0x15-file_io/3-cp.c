@@ -1,5 +1,4 @@
 #include "main.h"
-#define read_buffer_size 1024
 /**
  * main - The code
  * @ac: An integer
@@ -27,8 +26,7 @@ int main(int ac, char **av)
 	{
 		dprintf(STDERR_FILENO, ERROR_NWRITE, av[2]), exit(99);
 	}
-	k = read(i, buffer, read_buffer_size);
-	for (; k > 0; )
+	for (; (k = read(i, buffer, read_buffer_size)) > 0; )
 	{
 		if (write(j, buffer, k) != k)
 		{

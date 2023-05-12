@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av)
 {
-	int i, j;
+	int i = 0, j = 0;
 	char buffer[READ_BUFF_SIZE];
 	ssize_t k;
 

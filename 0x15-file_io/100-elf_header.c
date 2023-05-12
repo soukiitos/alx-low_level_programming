@@ -99,11 +99,11 @@ void OsAbi(Elf64_Ehdr k)
 		case ELFOSABI_NONE:
 			printf("UNIX - System V");
 		break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD");
-		break;
 		case ELFOSABI_HPUX:
 			printf("UNIX - HP-UX");
+		break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD");
 		break;
 		case ELFOSABI_LINUX:
 			printf("UNIX - Linux");

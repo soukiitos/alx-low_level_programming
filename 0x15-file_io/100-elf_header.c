@@ -37,9 +37,6 @@ void class(Elf64_Ehdr k)
 		case ELFCLASSNONE:
 			printf("none");
 		break;
-		default:
-			printf("<unknown: %x>", k.e_ident[EI_CLASS]);
-		break;
 	}
 	printf("\n");
 }
@@ -62,9 +59,6 @@ void data(Elf64_Ehdr k)
 		break;
 		case ELFDATANONE:
 			printf("none");
-		break;
-		default:
-			printf("<unknown: %x>", k.e_ident[EI_CLASS]);
 		break;
 	}
 	printf("\n");
@@ -180,7 +174,7 @@ void abiversion(Elf64_Ehdr k)
  */
 void type(Elf64_Ehdr k)
 {
-	int t;
+	int t = 0;
 	char *ty = (char *)&k.e_type;
 
 	printf("  Type:                              ");
@@ -237,9 +231,9 @@ void entrypointaddress(Elf64_Ehdr k)
 	{
 		et = 0;
 		ed = k.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
-		for (; !e[et]; et++)
-			;
-		printf("%x", e[et]);
+		while (!e[et])
+			et++;
+		printf("%x", e[et++]);
 		for (; et <= ed; et++)
 			printf("%02x", e[et]);
 		printf("\n");
@@ -262,17 +256,17 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit(98);
 	i = open(av[1], O_RDONLY);
 	if (i == -1)
-		dprintf(STDERR_FILENO, "The file can not open: %s\n", av[1]), exit(98);
+		dprintf(STDERR_FILENO, "Can't open file: %s\n", av[1]), exit(98);
 	j = read(i, &k, sizeof(k));
-	if (j != sizeof(k) || j < 1)
-		dprintf(STDERR_FILENO, "We can't read from the file: %s\n", av[1]), exit(98);
+	if (j < 1 || j != sizeof(k))
+		dprintf(STDERR_FILENO, "Can't read from file: %s\n", av[1]), exit(98);
 	if (k.e_ident[0] == 0x7f && k.e_ident[1] == 'E' && k.e_ident[2] == 'L'
 			&& k.e_ident[3] == 'F')
 	{
 		printf("ELF Header:\n");
 	}
 	else
-		dprintf(STDERR_FILENO, "It's Not a ELF file: %s\n", av[1]), exit(98);
+		dprintf(STDERR_FILENO, "Not ELF file: %s\n", av[1]), exit(98);
 	magic(k);
 	class(k);
 	data(k);
@@ -282,6 +276,6 @@ int main(int ac, char **av)
 	type(k);
 	entrypointaddress(k);
 	if (close(i))
-		dprintf(STDERR_FILENO, "ERROR: %d\n", i), exit(98);
+		dprintf(STDERR_FILENO, "ERROR closing file description: %d\n", i), exit(98);
 	return (EXIT_SUCCESS);
 }

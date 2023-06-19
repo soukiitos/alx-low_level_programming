@@ -33,13 +33,13 @@ int mul(int a, int b)
 	return (a * b);
 }
 /**
- * divide - Divide 2 numbers
+ * div - Divide 2 numbers
  * @a: An integer
  * @b: An integer
  *
  * Return: 0
  */
-int divide(int a, int b)
+int div(int a, int b)
 {
 	return (a / b);
 }

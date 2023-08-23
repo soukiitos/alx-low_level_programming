@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+'''Return the perimeter of the island described in grid'''
+
+
 def island_perimeter(grid):
     '''
     Calculte the perimeter of the island described in the grid

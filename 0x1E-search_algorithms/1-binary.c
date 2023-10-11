@@ -11,24 +11,27 @@
  */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t i = 0, j = size - 1, mid;
+	size_t i = 0, j = size - 1, mid, l;
 
-	if (array)
+	if (array == NULL)
+		return (-1);
+	while (i <= j)
 	{
-		while (i <= j)
+		mid = (i + j) / 2;
+		printf("Searching in array: ");
+		for (l = i; l <= j; l++)
 		{
-			mid = (i + j) / 2;
-			printf("Searching in array: ");
-			for (i = mid; mid < j; mid++)
-				printf("%d, ", array[mid]);
-			printf("%d\n", array[mid]);
-			if (array[mid] == value)
-				return (mid);
-			else if (array[mid] < value)
-				i = mid + 1;
-			else
-				j = mid - 1;
+			printf("%d", array[l]);
+			if (l < j)
+				printf(", ");
 		}
+		printf("\n");
+		if (array[mid] == value)
+			return (mid);
+		if (array[mid] < value)
+			i = mid + 1;
+		else
+			j = mid - 1;
 	}
 	return (-1);
 }

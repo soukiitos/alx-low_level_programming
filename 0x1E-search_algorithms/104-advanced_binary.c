@@ -33,7 +33,13 @@ int rec_advanced_binary(int *array, size_t size, int value)
 		return (-1);
 	printf("Searching in array: ");
 	for (; j < size; j++)
-		printf("%s %d", (j == 0) ? ":" : ",", array[j]);
+	{
+		if (j > 0)
+		{
+			printf(", ");
+		}
+		printf("%d", array[j]);
+	}
 	printf("\n");
 	if (mid && size % 2 == 0)
 		mid--;

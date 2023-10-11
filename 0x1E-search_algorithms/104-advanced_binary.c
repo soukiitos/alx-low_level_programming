@@ -39,9 +39,9 @@ int rec_advanced_binary(int *array, size_t size, int value)
 		mid--;
 	if (value == array[mid])
 	{
-		if (mid <= 0)
-			return ((int)mid);
-		return (rec_advanced_binary(array, mid + 1, value));
+		if (mid > 0)
+			return (rec_advanced_binary(array, mid + 1, value));
+		return ((int)mid);
 	}
 	if (value < array[mid])
 		return (rec_advanced_binary(array, mid + 1, value));

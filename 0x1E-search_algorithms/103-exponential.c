@@ -10,39 +10,52 @@
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t i = 1, j = 0, l, m;
+	size_t i = 0, j;
 
 	if (array == NULL)
 		return (-1);
-	if (array)
+	if (array[0] != value)
 	{
-		while (i < size && array[i] <= value)
-		{
-			printf("Value checked array[%lu] = [%d]\n", i, array[i]);
-			i *= 2;
-		}
-		j = (i < size) ? i : size;
-		i /= 2;
-		printf("Value found between indexes [%lu] and [%lu]\n", i, j);
+		for (i = 1; i < size && array[i] <= value; i = i * 2)
+			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
+	}
+	if (i < size)
+		j = i;
+	else
+		j = size - 1;
+	printf("Value found between indexes [%ld] and [%ld]\n", i / 2, j);
+	return (exp_search_binary(array, i / 2, j, value));
+}
+
+/**
+ * exp_search_binary - Search for a value in a sorted array of integers
+ * using the Exponential search algorithm
+ * @array: A pointer
+ * @a: An index
+ * @b: An index
+ * @value: The value to search for
+ *
+ * Return: 0
+ */
+int exp_search_binary(int *array, size_t a, size_t b, int value)
+{
+	size_t i;
+
+	if (array == NULL)
+		return (-1);
+	while (b >= a)
+	{
 		printf("Searching in array: ");
-		for (m = i; m < j; m++)
-		{
-			if (m < j - 1)
-				printf("%d, ", array[m]);
-			else
-				printf("%d\n", array[j - 1]);
-		}
-		while (i <= j)
-		{
-			l = (i + j) / 2;
-			printf("Value checked array[%lu] = [%d]\n", l, array[l]);
-			if (array[l] == value)
-				return (l);
-			if (array[l] < value)
-				i = l + 1;
-			else
-				j = l;
-		}
+		for (i = a; i < b; i++)
+			printf("%d, ", array[i]);
+		printf("%d\n", array[i]);
+		i = a + (b - a) / 2;
+		if (array[i] == value)
+			return (i);
+		if (array[i] > value)
+			b = i - 1;
+		else
+			a = i + 1;
 	}
 	return (-1);
 }
